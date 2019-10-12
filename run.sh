@@ -1,2 +1,2 @@
 #!/bin/bash
-sh ./script/cora_IncepGCN.sh 
+sh ./script/supervised/cora_IncepGCN.sh 

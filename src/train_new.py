@@ -74,6 +74,7 @@ parser.add_argument("--nbaseblocklayer", type=int, default=1,
                     help="The number of layers in each baseblock")
 parser.add_argument("--aggrmethod", default="default",
                     help="The aggrmethod for the layer aggreation. The options includes add and concat. Only valid in resgcn, densegcn and inecptiongcn")
+parser.add_argument("--task_type", default="full", help="The node classification task type (full and semi). Only valid for cora, citeseer and pubmed dataset.")
 
 args = parser.parse_args()
 if args.debug:
@@ -101,7 +102,7 @@ if args.cuda or args.mixmode:
     torch.cuda.manual_seed(args.seed)
 
 # should we need fix random seed here?
-sampler = Sampler(args.dataset, args.datapath)
+sampler = Sampler(args.dataset, args.datapath, args.task_type)
 
 # get labels and indexes
 labels, idx_train, idx_val, idx_test = sampler.get_label_and_idxes(args.cuda)

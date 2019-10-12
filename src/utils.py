@@ -34,7 +34,7 @@ def sparse_mx_to_torch_sparse_tensor(sparse_mx):
 
 
 
-def load_citation(dataset_str="cora", normalization="AugNormAdj", porting_to_torch=True,data_path=datadir):
+def load_citation(dataset_str="cora", normalization="AugNormAdj", porting_to_torch=True,data_path=datadir, task_type="full"):
     """
     Load Citation Networks Datasets.
     """
@@ -73,15 +73,20 @@ def load_citation(dataset_str="cora", normalization="AugNormAdj", porting_to_tor
     labels = np.vstack((ally, ty))
     labels[test_idx_reorder, :] = labels[test_idx_range, :]
     
-    #semi-supervised setting
-    # idx_test = test_idx_range.tolist()
-    # idx_train = range(len(y))
-    # idx_val = range(len(y), len(y)+500)
-    
-    #supervised setting
-    idx_test = test_idx_range.tolist()
-    idx_train = range(len(ally)- 500)
-    idx_val = range(len(ally) - 500, len(ally))
+    if task_type == "full":
+        print("Load full supervised task.")
+        #supervised setting
+        idx_test = test_idx_range.tolist()
+        idx_train = range(len(ally)- 500)
+        idx_val = range(len(ally) - 500, len(ally))
+    elif task_type == "semi":
+        print("Load semi-supervised task.")
+        #semi-supervised setting
+        idx_test = test_idx_range.tolist()
+        idx_train = range(len(y))
+        idx_val = range(len(y), len(y)+500)
+    else:
+        raise ValueError("Task type: %s is not supported. Available option: full and semi.")
 
     adj, features = preprocess_citation(adj, features, normalization)
     features = np.array(features.todense())
@@ -154,7 +159,7 @@ def load_reddit_data(normalization="AugNormAdj", porting_to_torch=True, data_pat
 
 
     
-def data_loader(dataset, data_path=datadir, normalization="AugNormAdj", porting_to_torch=True):
+def data_loader(dataset, data_path=datadir, normalization="AugNormAdj", porting_to_torch=True, task_type = "full"):
     if dataset == "reddit":
         return load_reddit_data(normalization, porting_to_torch, data_path)
     else:
@@ -165,7 +170,7 @@ def data_loader(dataset, data_path=datadir, normalization="AugNormAdj", porting_
          idx_val,
          idx_test,
          degree,
-         learning_type) = load_citation(dataset, normalization, porting_to_torch, data_path)
+         learning_type) = load_citation(dataset, normalization, porting_to_torch, data_path, task_type)
         train_adj = adj
         train_features = features
         return adj, train_adj, features, train_features, labels, idx_train, idx_val, idx_test, degree, learning_type

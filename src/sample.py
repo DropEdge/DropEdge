@@ -7,7 +7,7 @@ from normalization import fetch_normalization
 
 class Sampler:
     """Sampling the input graph data."""
-    def __init__(self, dataset, data_path="data"):
+    def __init__(self, dataset, data_path="data", task_type="full"):
         self.dataset = dataset
         self.data_path = data_path
         (self.adj,
@@ -19,7 +19,7 @@ class Sampler:
          self.idx_val,
          self.idx_test, 
          self.degree,
-         self.learning_type) = data_loader(dataset, data_path, "NoNorm", False)
+         self.learning_type) = data_loader(dataset, data_path, "NoNorm", False, task_type)
         
         #convert some data to torch tensor ---- may be not the best practice here.
         self.features = torch.FloatTensor(self.features).float()
