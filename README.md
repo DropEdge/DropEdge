@@ -20,7 +20,7 @@ sh scripts/supervised/cora_IncepGCN.sh
 ```
 
 ## Data
-The data format is same as [GCN](https://github.com/tkipf/gcn). We provide three benchmark datasets as examples (see `data` folder). We use the public dataset splits provided by [Planetoid](https://github.com/kimiyoung/planetoid). The full-supervised setting strictly follows [GCN](https://github.com/tkipf/gcn), while the semi-supervised setting strictly follows [FastGCN](https://github.com/matenure/FastGCN) and [ASGCN](https://github.com/huangwb/AS-GCN). 
+The data format is same as [GCN](https://github.com/tkipf/gcn). We provide three benchmark datasets as examples (see `data` folder). We use the public dataset splits provided by [Planetoid](https://github.com/kimiyoung/planetoid). The semi-supervised setting strictly follows [GCN](https://github.com/tkipf/gcn), while the full-supervised setting strictly follows [FastGCN](https://github.com/matenure/FastGCN) and [ASGCN](https://github.com/huangwb/AS-GCN). 
 
 
 ## Benchmark Results
