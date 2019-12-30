@@ -1,5 +1,10 @@
  DropEdge: Towards Deep Graph Convolutional Networks on Node Classification
 ====
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dropedge-towards-deep-graph-convolutional/node-classification-on-cora-full-supervised)](https://paperswithcode.com/sota/node-classification-on-cora-full-supervised?p=dropedge-towards-deep-graph-convolutional)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dropedge-towards-deep-graph-convolutional/node-classification-on-citeseer-full)](https://paperswithcode.com/sota/node-classification-on-citeseer-full?p=dropedge-towards-deep-graph-convolutional)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dropedge-towards-deep-graph-convolutional/node-classification-on-pubmed-full-supervised)](https://paperswithcode.com/sota/node-classification-on-pubmed-full-supervised?p=dropedge-towards-deep-graph-convolutional)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dropedge-towards-deep-graph-convolutional/node-classification-on-reddit)](https://paperswithcode.com/sota/node-classification-on-reddit?p=dropedge-towards-deep-graph-convolutional)
+
 This is a Pytorch implementation of paper: DropEdge: Towards Deep Graph Convolutional Networks on Node Classification
 
 
@@ -24,7 +29,7 @@ The data format is same as [GCN](https://github.com/tkipf/gcn). We provide three
 
 
 ## Benchmark Results
-For the details of backbones in Tables, please refer to the Appendix B.2 in papers. All results are obtained on GPU (CUDA Version 9.0.176). 
+For the details of backbones in Tables, please refer to the Appendix B.2 in the paper. All results are obtained on GPU (CUDA Version 9.0.176). 
 ### Full-supervised Setting Results
 
 The following table demonstrates the testing accuracy (%) comparisons on different backbones and layers w and w/o DropEdge.
