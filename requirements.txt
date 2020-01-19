@@ -20,6 +20,7 @@ requests==2.14.2
 scikit-learn==0.20.3
 scipy==1.2.1
 six==1.10.0
-torch==0.4.0
+torch>=0.4.0,<0.5.0
 torchvision==0.2.1
-
+tensorboard==2.1.0
+tensorboardX==2.0
