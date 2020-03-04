@@ -8,6 +8,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
+from tensorboardX import SummaryWriter
 
 from earlystopping import EarlyStopping
 from sample import Sampler
@@ -47,6 +48,7 @@ parser.add_argument('--dataset', default="cora", help="The data set")
 parser.add_argument('--datapath', default="data/", help="The data path.")
 parser.add_argument("--early_stopping", type=int,
                     default=0, help="The patience of earlystopping. Do not adopt the earlystopping when it equals 0.")
+parser.add_argument("--no_tensorboard", default=False, help="Disable writing logs to tensorboard")
 
 # Model parameter
 parser.add_argument('--type',
@@ -152,6 +154,10 @@ if args.early_stopping > 0:
     early_stopping = EarlyStopping(patience=args.early_stopping, verbose=False)
     print("Model is saving to: %s" % (early_stopping.fname))
 
+if args.no_tensorboard is False:
+    tb_writer = SummaryWriter(
+        comment=f"-dataset_{args.dataset}-type_{args.type}"
+    )
 
 def get_lr(optimizer):
     for param_group in optimizer.param_groups:
@@ -263,6 +269,13 @@ for epoch in range(args.epochs):
               's_time: {:.4f}s'.format(sampling_t),
               't_time: {:.4f}s'.format(outputs[5]),
               'v_time: {:.4f}s'.format(outputs[6]))
+    
+    if args.no_tensorboard is False:
+        tb_writer.add_scalars('Loss', {'train': outputs[0], 'val': outputs[2]}, epoch)
+        tb_writer.add_scalars('Accuracy', {'train': outputs[1], 'val': outputs[3]}, epoch)
+        tb_writer.add_scalar('lr', outputs[4], epoch)
+        tb_writer.add_scalars('Time', {'train': outputs[5], 'val': outputs[6]}, epoch)
+        
 
     loss_train[epoch], acc_train[epoch], loss_val[epoch], acc_val[epoch] = outputs[0], outputs[1], outputs[2], outputs[
         3]
