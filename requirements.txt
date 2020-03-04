@@ -16,7 +16,7 @@ pyOpenSSL==17.0.0
 pyparsing==2.2.0
 python-dateutil==2.8.0
 pytz==2019.1
-requests==2.14.2
+requests==2.20.0
 scikit-learn==0.20.3
 scipy==1.2.1
 six==1.10.0
