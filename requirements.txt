@@ -4,7 +4,7 @@ cffi==1.10.0
 decorator==4.4.0
 idna==2.6
 networkx==2.3
-numpy==1.14.3
+numpy==1.22.0
 olefile==0.45.1
 packaging==16.8
 pandas==0.24.2
